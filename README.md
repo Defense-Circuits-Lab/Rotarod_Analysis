@@ -6,3 +6,5 @@ Instead we offer the possibility to look at `absolute` changes in score and at `
 The output format is compatible to a statistic tool, developed in our lab: https://github.com/Defense-Circuits-Lab/stats_n_plots.git. 
 
 Please see the Walkthrough.ipynb file for further explanations and the required data structure!
+
+[Konstantin Kobel](https://github.com/KonKob), [Michael Schellenberger](https://github.com/MSchellenberger) and [Dennis Segebarth](https://github.com/DSegebarth) contributed to the Code.

@@ -14,9 +14,9 @@ def get_df(filename: str, lines: Optional[List]=None, animals_to_exclude: Option
     slices the dataframe to get a new dataframe containing only the specified lines (or all lines if not specified)
     """
     if filename.endswith(".xlsx"):
-        df_raw = pd.read_excel(filename)
+        df_raw = pd.read_excel(filename, dtype={"subgroup": str})
     elif filename.endswith(".csv"):
-        df_raw = pd.read_csv(filename)
+        df_raw = pd.read_csv(filename, dtype={"subgroup": str})
     else:
         raise ValueError ("File type not supported!")
         
@@ -26,11 +26,11 @@ def get_df(filename: str, lines: Optional[List]=None, animals_to_exclude: Option
     if subgroup is not None:
         if "subgroup" not in df_raw.keys():
             raise KeyError(f"The dataframe doesn't have a column 'subgroup'. Please set subgroup to None!")
-        if subgroup not in df_raw['subgroup']:
+        if subgroup not in df_raw['subgroup'].values:
             raise KeyError(f"The subgroup you specified is not in the subgroups in the dataframe!\n"
-                           f"The following subgroups are in the dataframe: {df['subgroup'].unique()}.")
+                           f"The following subgroups are in the dataframe: {df_raw['subgroup'].unique()}.")
         else:
-            df_raw = df_raw.loc[df['subgroup']==subgroup, :]
+            df_raw = df_raw.loc[df_raw['subgroup']==subgroup, :]
         
     if lines is None:
         animals = list(
